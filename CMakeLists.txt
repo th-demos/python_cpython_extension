@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(pyton_cpython_extension)
 
-add_library(foomodule src/foomodule.cc)
+add_library(foomodule src/foomodule.cc src/custom_type.cc)
 
 find_package(Python REQUIRED COMPONENTS Development)
 

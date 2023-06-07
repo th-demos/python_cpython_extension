@@ -2,6 +2,6 @@ import setuptools
 
 
 setuptools.setup(
-    name='foo',
-    ext_modules=[setuptools.Extension("foo", ["src/foomodule.cc"])]
+    name='custom',
+    ext_modules=[setuptools.Extension("custom", ["src/foomodule.cc", "src/custom_type.cc"])]
 )
