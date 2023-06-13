@@ -1,2 +1,4 @@
 import custom
-custom.hello()
+
+c = custom.Custom()
+print(c)

@@ -10,17 +10,17 @@ custom_module_hello(PyObject *self, PyObject *args) {
   CustomObject *obj = PyObject_NEW(CustomObject , &CustomType);
   obj->ob_base.ob_refcnt;
   printf("custom object: %p\n", obj);
-  printf("refer count: %d\n", obj->ob_base.ob_refcnt);
+  printf("refer count: %lld\n", obj->ob_base.ob_refcnt);
   return Py_None;
 }
 
 static PyMethodDef custom_module_methods[] = {
     {"hello", custom_module_hello, METH_VARARGS,
      "hello in foo module"},
-    {NULL, NULL, 0, NULL}        /* Sentinel */
+    {nullptr, nullptr, 0, nullptr}        /* Sentinel */
 };
 
-static struct PyModuleDef foomodule = {
+static struct PyModuleDef customModule = {
     PyModuleDef_HEAD_INIT,
     "custom",   /* name of module */
     "custom module", /* module documentation, may be NULL */
@@ -34,15 +34,15 @@ PyMODINIT_FUNC
 PyInit_custom(void) {
   PyObject *m;
   if (PyType_Ready(&CustomType) < 0)
-    return NULL;
+    return nullptr;
 
-  m = PyModule_Create(&foomodule);
+  m = PyModule_Create(&customModule);
 
   if (PyModule_AddObject(m, "Custom", (PyObject *) &CustomType) < 0) {
     printf("look like add Custom Type failed!\n");
     Py_DECREF(&CustomType);
     Py_DECREF(m);
-    return NULL;
+    return nullptr;
   }
   if (m == nullptr)
     return nullptr;
